@@ -1,6 +1,9 @@
 ﻿namespace BookingMicroservervice.Enums
 {
-    public class BookingStatus
+    public enum BookingStatus
     {
+        Inprogress,
+        Completed,
+        Cancelled,
     }
 }
