@@ -71,7 +71,7 @@ namespace PassengerMicroservice
             });
 
             //delete a passenger from the system
-            app.MapDelete("/passenger/{id}", async (ApplicationDbContext db, int id) => {
+            app.MapDelete("/passengers/{id}", async (ApplicationDbContext db, int id) => {
 
                 var passenger = await db.Passengers.FindAsync(id);
 
@@ -85,7 +85,26 @@ namespace PassengerMicroservice
                 await db.SaveChangesAsync();
 
                 return Results.Ok($"passenger with id {id} deleted");
+            });
 
+            app.MapPut("/passengers/{id}", async (ApplicationDbContext db, int id, Pessenger passenger) =>
+            {
+
+                var currentPassenger = await db.Passengers.FindAsync(id);
+                if (currentPassenger == null)
+                {
+                    return Results.NotFound($"There is no passenger with id {id}");
+                }
+
+                currentPassenger.Id = passenger.Id;
+                currentPassenger.Email = passenger.Email;
+                currentPassenger.LastName = passenger.LastName;
+                currentPassenger.FirstName = passenger.FirstName;
+                currentPassenger.PassportNumber = passenger.PassportNumber;
+
+                await db.SaveChangesAsync();
+
+                return Results.Ok($"Successfully updated passenger with id {id}");
 
             });
 
