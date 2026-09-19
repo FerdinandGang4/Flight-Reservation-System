@@ -1,3 +1,6 @@
+using FlightMicroservice.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace FlightMicroservice
 {
     public class Program
@@ -9,6 +12,7 @@ namespace FlightMicroservice
             // Add services to the container.
             builder.Services.AddAuthorization();
             builder.Services.AddSwaggerGen();
+            //builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 
             var app = builder.Build();
@@ -24,23 +28,11 @@ namespace FlightMicroservice
 
             app.UseAuthorization();
 
-            var summaries = new[]
-            {
-                "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-            };
-
-            app.MapGet("/weatherforecast", (HttpContext httpContext) =>
-            {
-                var forecast = Enumerable.Range(1, 5).Select(index =>
-                    new WeatherForecast
-                    {
-                        Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                        TemperatureC = Random.Shared.Next(-20, 55),
-                        Summary = summaries[Random.Shared.Next(summaries.Length)]
-                    })
-                    .ToArray();
-                return forecast;
-            });
+         
+            //app.MapGet("/flights", async (ApplicationDbContext db) =>
+            //{
+            //    return await db.Flights.ToListAsync();
+            //});
 
             app.Run();
         }
