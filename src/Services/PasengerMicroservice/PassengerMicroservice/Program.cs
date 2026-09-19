@@ -53,7 +53,6 @@ namespace PassengerMicroservice
                 return Results.Ok(passenger);
             });
 
-
             //This is to create a Passenger object
             app.MapPost("/passengers", async (ApplicationDbContext db, Pessenger passenger) =>
             {
