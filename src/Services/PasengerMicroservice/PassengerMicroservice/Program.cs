@@ -26,8 +26,68 @@ namespace PassengerMicroservice
 
             app.UseAuthorization();
 
-           
-           
+            if (app.Environment.IsDevelopment())
+            {
+                app.UseSwagger();
+                app.UseSwaggerUI();
+            }
+
+            //Creating API end points
+            app.MapGet("/passengers", async (ApplicationDbContext db) => {
+
+                var passenger = await db.Passengers.ToListAsync();
+
+                return Results.Ok(passenger);
+            });
+
+            //Get a single passenger by id
+            app.MapGet("/passengers/{id}", async (ApplicationDbContext db, int id) => {
+
+                var passenger = await db.Passengers.FindAsync(id);
+
+                if(passenger == null)
+                {
+                    return Results.NotFound($"There is no Passenger with id {id}");
+                }
+
+                return Results.Ok(passenger);
+            });
+
+
+            //This is to create a Passenger object
+            app.MapPost("/passengers", async (ApplicationDbContext db, Pessenger passenger) =>
+            {
+              
+                if(passenger == null)
+                {
+                    return Results.BadRequest($"Please make sure all required information are entered");
+                }
+
+                await db.Passengers.AddAsync(passenger);
+
+                await db.SaveChangesAsync();
+
+                return Results.Created($" new passenger created with id {passenger.Id}", passenger);
+            });
+
+            //delete a passenger from the system
+            app.MapDelete("/passenger/{id}", async (ApplicationDbContext db, int id) => {
+
+                var passenger = await db.Passengers.FindAsync(id);
+
+                if (passenger == null)
+                {
+                    return Results.NotFound($"There is no passenger with id {id}");
+                }
+
+                db.Passengers.Remove(passenger);
+
+                await db.SaveChangesAsync();
+
+                return Results.Ok($"passenger with id {id} deleted");
+
+
+            });
 
             app.Run();
         }
