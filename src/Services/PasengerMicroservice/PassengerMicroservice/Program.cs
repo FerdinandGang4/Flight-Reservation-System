@@ -1,3 +1,7 @@
+using Microsoft.EntityFrameworkCore;
+using PassengerMicroservice.Model;
+using PassengerMicroservice.Data;
+
 namespace PassengerMicroservice
 {
     public class Program
@@ -8,6 +12,10 @@ namespace PassengerMicroservice
 
             // Add services to the container.
             builder.Services.AddAuthorization();
+            builder.Services.AddSwaggerGen();
+
+            builder.Services.AddDbContext<ApplicationDbContext>(option =>
+            option.UseNpgsql(builder.Configuration.GetConnectionString("PassengerDbConnectionString")));
 
 
             var app = builder.Build();
@@ -18,23 +26,8 @@ namespace PassengerMicroservice
 
             app.UseAuthorization();
 
-            var summaries = new[]
-            {
-                "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-            };
-
-            app.MapGet("/weatherforecast", (HttpContext httpContext) =>
-            {
-                var forecast = Enumerable.Range(1, 5).Select(index =>
-                    new WeatherForecast
-                    {
-                        Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                        TemperatureC = Random.Shared.Next(-20, 55),
-                        Summary = summaries[Random.Shared.Next(summaries.Length)]
-                    })
-                    .ToArray();
-                return forecast;
-            });
+           
+           
 
             app.Run();
         }

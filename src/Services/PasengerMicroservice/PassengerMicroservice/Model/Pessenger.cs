@@ -1,4 +1,5 @@
-﻿namespace PassengerMicroservice.Model
+﻿
+namespace PassengerMicroservice.Model
 {
     public class Pessenger
     {
