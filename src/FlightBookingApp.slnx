@@ -1,1 +1,10 @@
-<Solution />
+<Solution>
+  <Folder Name="/Services/" />
+  <Folder Name="/Services/BookingService/" />
+  <Folder Name="/Services/FlightService/">
+    <Project Path="Services/FlightMicroService/FlightMicroservice/FlightMicroservice.csproj" Id="6d9e6d3f-e7ed-4181-926a-b7a5c1ab25b2" />
+  </Folder>
+  <Folder Name="/Services/NotificationService/" />
+  <Folder Name="/Services/PassengerService/" />
+  <Folder Name="/Services/PaymentService/" />
+</Solution>

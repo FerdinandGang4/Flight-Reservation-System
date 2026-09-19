@@ -1,0 +1,6 @@
+@FlightMicroservice_HostAddress = http://localhost:5206
+
+GET {{FlightMicroservice_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
