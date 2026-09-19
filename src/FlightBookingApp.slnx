@@ -5,6 +5,8 @@
     <Project Path="Services/FlightMicroService/FlightMicroservice/FlightMicroservice.csproj" Id="6d9e6d3f-e7ed-4181-926a-b7a5c1ab25b2" />
   </Folder>
   <Folder Name="/Services/NotificationService/" />
-  <Folder Name="/Services/PassengerService/" />
+  <Folder Name="/Services/PassengerService/">
+    <Project Path="Services/PasengerMicroservice/PassengerMicroservice/PassengerMicroservice.csproj" Id="7c2cfb23-8166-4ce4-ac66-6c61cf02f31e" />
+  </Folder>
   <Folder Name="/Services/PaymentService/" />
 </Solution>
