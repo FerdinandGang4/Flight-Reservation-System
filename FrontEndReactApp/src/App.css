@@ -297,6 +297,14 @@
   color: #0f172a;
 }
 
+.empty-summary {
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+}
+
 @media (max-width: 900px) {
   .flight-layout {
     grid-template-columns: 1fr;
