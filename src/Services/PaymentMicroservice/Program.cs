@@ -11,15 +11,9 @@ namespace PaymentMicroservice
             builder.Services.AddDbContext<ApplicationDbContext>(option =>
              option.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-         
-
-
-
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
-
-         
             app.Run();
         }
     }
