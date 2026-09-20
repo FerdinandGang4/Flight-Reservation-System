@@ -10,6 +10,6 @@ namespace BookingMicroservervice.Data
 
         }
 
-        DbSet<Booking> Bookings { get; set; }
+        public DbSet<Booking> Bookings { get; set; }
     }
 }
