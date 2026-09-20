@@ -1,10 +1,79 @@
+.topbar {
+  width: 100%;
+  padding: 18px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  background: rgba(15, 23, 42, 0.92);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.1);
+}
+
+.brand-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-mark {
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #38bdf8, #4f46e5);
+  color: white;
+  font-weight: 800;
+  font-size: 1.2rem;
+}
+
+.brand-name {
+  display: block;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.brand-wrap small {
+  color: rgba(191, 219, 254, 0.8);
+  display: block;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.62rem;
+}
+
+.topnav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.topnav a,
+.footer-links a {
+  text-decoration: none;
+  color: #dbeafe;
+  transition: opacity 0.2s ease;
+}
+
+.topnav a:hover,
+.footer-links a:hover {
+  opacity: 0.8;
+}
+
+.header-button {
+  padding-inline: 1.2rem;
+}
+
 .flight-app {
-  width: min(1240px, calc(100% - 32px));
-  margin: 40px auto;
-  padding: 32px;
-  border-radius: 28px;
+  width: 100%;
+  margin: 0;
+  padding: 32px 32px 24px;
   background: linear-gradient(180deg, #f7f8ff 0%, #eef4ff 100%);
-  box-shadow: 0 26px 60px rgba(15, 23, 42, 0.08);
+  box-shadow: none;
+  border-radius: 0;
 }
 
 .page-header {
@@ -305,7 +374,133 @@
   color: #64748b;
 }
 
+.login-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  padding: 16px;
+}
+
+.login-modal {
+  width: min(100%, 420px);
+  background: white;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 28px 60px rgba(15, 23, 42, 0.25);
+}
+
+.login-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.login-header h2 {
+  margin: 0;
+  color: #0f172a;
+}
+
+.close-button {
+  border: none;
+  background: transparent;
+  color: #475569;
+  font-size: 1.8rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.login-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-weight: 700;
+  color: #334155;
+}
+
+.login-form input {
+  border: 1px solid #dbe3f0;
+  border-radius: 12px;
+  background: #f8fafc;
+  height: 48px;
+  padding: 0 14px;
+  font: inherit;
+  color: #0f172a;
+}
+
+.login-form input:focus {
+  outline: 2px solid rgba(79, 70, 229, 0.2);
+  border-color: #4f46e5;
+}
+
+.login-error {
+  margin: 0;
+  color: #dc2626;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.welcome-text {
+  margin: 8px 0 0;
+  color: #4338ca;
+  font-weight: 700;
+}
+
+.site-footer {
+  width: 100%;
+  padding: 22px 32px;
+  background: rgba(15, 23, 42, 0.95);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-top: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.site-footer strong {
+  display: block;
+  font-size: 1rem;
+  margin-bottom: 4px;
+}
+
+.site-footer p,
+.copyright {
+  margin: 0;
+  color: rgba(191, 219, 254, 0.8);
+}
+
+.footer-links {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
 @media (max-width: 900px) {
+  .topbar,
+  .site-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .topnav,
+  .footer-links {
+    flex-wrap: wrap;
+    gap: 12px 18px;
+  }
+
   .flight-layout {
     grid-template-columns: 1fr;
   }
@@ -315,15 +510,48 @@
   }
 }
 
-@media (max-width: 600px) {
-  .flight-app {
-    padding: 18px;
-    margin: 16px auto;
+@media (max-width: 640px) {
+  .topbar {
+    padding: 14px 16px;
   }
 
-  .page-header,
+  .brand-wrap {
+    width: 100%;
+  }
+
+  .topnav {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    gap: 10px;
+    font-size: 0.9rem;
+  }
+
+  .flight-app {
+    padding: 18px 16px 20px;
+    margin: 0;
+  }
+
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .page-header h1 {
+    font-size: 2rem;
+  }
+
+  .primary-button,
+  .header-button {
+    width: 100%;
+    justify-content: center;
+  }
+
   .flight-card-header,
-  .flight-card-footer {
+  .flight-card-footer,
+  .panel-header,
+  .summary-row {
     flex-direction: column;
     align-items: flex-start;
   }
@@ -336,5 +564,45 @@
   .price-block {
     width: 100%;
     justify-content: space-between;
+  }
+
+  .site-footer {
+    padding: 18px 16px;
+  }
+
+  .site-footer,
+  .footer-links {
+    width: 100%;
+  }
+}
+
+@media (max-width: 390px) {
+  .brand-name {
+    font-size: 1rem;
+  }
+
+  .brand-wrap small {
+    letter-spacing: 0.04em;
+  }
+
+  .topnav {
+    font-size: 0.8rem;
+    gap: 8px;
+  }
+
+  .flight-card,
+  .summary-box,
+  .search-panel,
+  .flight-list-panel,
+  .summary-panel {
+    border-radius: 16px;
+  }
+
+  .flight-card h3 {
+    font-size: 1.05rem;
+  }
+
+  .time {
+    font-size: 1.2rem;
   }
 }
