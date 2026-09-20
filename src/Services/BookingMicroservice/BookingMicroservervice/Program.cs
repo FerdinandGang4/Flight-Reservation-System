@@ -1,5 +1,6 @@
 using BookingMicroservervice.Data;
 using BookingMicroservervice.DTOs;
+using BookingMicroservervice.Enums;
 using BookingMicroservervice.Mapper;
 using BookingMicroservervice.Model;
 using Microsoft.EntityFrameworkCore;
@@ -30,13 +31,31 @@ namespace BookingMicroservervice
 
             app.UseHttpsRedirection();
 
+
             app.MapGet("/bookings", async (ApplicationDbContext db) => {
             
                return await db.Bookings.ToListAsync();
             
             });
 
-           
+            app.MapGet("/bookings/{id:int}", async (
+            int id,
+            ApplicationDbContext db) =>
+                    {
+                // Find booking by ID
+                var booking = await db.Bookings.FindAsync(id);
+
+                // Check if booking exists
+                if (booking == null)
+                {
+                    return Results.NotFound(
+                        $"Booking with ID {id} was not found.");
+                }
+
+                // Return booking
+                return Results.Ok(booking);
+            });
+
 
             app.MapPost("/bookings", async (
                    ApplicationDbContext db, BookingDto dto) =>
@@ -49,6 +68,86 @@ namespace BookingMicroservervice
                 await db.SaveChangesAsync();
 
                 return Results.Created($"/bookings/{booking.Id}", booking);
+            });
+
+            // ==========================================
+            // UPDATE BOOKING
+            // PUT /bookings/5
+            // ==========================================
+            app.MapPut("/bookings/{id:int}", async (
+                int id,
+                ApplicationDbContext db,
+                BookingDto dto) =>
+            {
+                // Find existing booking
+                var existingBooking = await db.Bookings.FindAsync(id);
+
+                if (existingBooking == null)
+                {
+                    return Results.NotFound(
+                        $"Booking with ID {id} was not found.");
+                }
+
+                // Convert DTO to updated entity
+                var updatedBooking = BookingMapper.ToEntity(dto);
+
+                // Update properties
+                existingBooking.PassengerId = updatedBooking.PassengerId;
+                existingBooking.FlightId = updatedBooking.FlightId;
+                existingBooking.BookingDate = updatedBooking.BookingDate;
+                existingBooking.Status = updatedBooking.Status;
+
+                // Save changes
+                await db.SaveChangesAsync();
+
+                return Results.Ok(existingBooking);
+            });
+
+
+            // ==========================================
+            // DELETE BOOKING
+            // DELETE /bookings/5
+            // ==========================================
+            app.MapDelete("/bookings/{id:int}", async (
+                int id,
+                ApplicationDbContext db) =>
+            {
+                // Find booking
+                var booking = await db.Bookings.FindAsync(id);
+
+                if (booking == null)
+                {
+                    return Results.NotFound(
+                        $"Booking with ID {id} was not found.");
+                }
+
+                // Remove booking
+                db.Bookings.Remove(booking);
+
+                // Save changes
+                await db.SaveChangesAsync();
+
+                return Results.NoContent();
+            });
+
+            
+            app.MapPatch("/bookings/{id:int}/cancel", async (
+            int id,
+            ApplicationDbContext db) =>
+            {
+                var booking = await db.Bookings.FindAsync(id);
+
+                if (booking == null)
+                {
+                    return Results.NotFound(
+                        $"Booking with ID {id} was not found.");
+                }
+
+                booking.Status = BookingStatus.Cancelled;
+
+                await db.SaveChangesAsync();
+
+                return Results.Ok(booking);
             });
 
             app.Run();
