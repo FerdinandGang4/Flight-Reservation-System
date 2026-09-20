@@ -70,10 +70,7 @@ namespace BookingMicroservervice
                 return Results.Created($"/bookings/{booking.Id}", booking);
             });
 
-            // ==========================================
-            // UPDATE BOOKING
-            // PUT /bookings/5
-            // ==========================================
+           
             app.MapPut("/bookings/{id:int}", async (
                 int id,
                 ApplicationDbContext db,
@@ -104,10 +101,7 @@ namespace BookingMicroservervice
             });
 
 
-            // ==========================================
-            // DELETE BOOKING
-            // DELETE /bookings/5
-            // ==========================================
+            
             app.MapDelete("/bookings/{id:int}", async (
                 int id,
                 ApplicationDbContext db) =>

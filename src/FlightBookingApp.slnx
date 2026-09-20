@@ -10,5 +10,7 @@
   <Folder Name="/Services/PassengerService/">
     <Project Path="Services/PasengerMicroservice/PassengerMicroservice/PassengerMicroservice.csproj" Id="7c2cfb23-8166-4ce4-ac66-6c61cf02f31e" />
   </Folder>
-  <Folder Name="/Services/PaymentService/" />
+  <Folder Name="/Services/PaymentService/">
+    <Project Path="Services/PaymentMicroservice/PaymentMicroservice.csproj" Id="9d4e66f7-2261-4588-9ddc-3002703561ed" />
+  </Folder>
 </Solution>
