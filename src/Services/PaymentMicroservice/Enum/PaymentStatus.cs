@@ -1,6 +1,9 @@
 ﻿namespace PaymentMicroservice.Enum
 {
-    public class PaymentStatus
+    public enum PaymentStatus
     {
+        Pending,
+        Completed,
+        Cancelled
     }
 }
