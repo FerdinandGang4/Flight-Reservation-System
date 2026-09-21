@@ -16,16 +16,17 @@ namespace BookingMicroservervice
 
             builder.Services.AddDbContext<ApplicationDbContext>(option=>
             option.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
-            builder.Services.AddSwaggerGen();
+           
+            //builder.Services.AddSwaggerGen();
             // Add services to the container.
           
             var app = builder.Build();
 
-            if(app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
+            //if(app.Environment.IsDevelopment())
+            //{
+            //    app.UseSwagger();
+            //    app.UseSwaggerUI();
+            //}
 
             // Configure the HTTP request pipeline.
 

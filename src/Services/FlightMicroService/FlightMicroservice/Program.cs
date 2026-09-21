@@ -23,22 +23,22 @@ public class Program
                 )
         );
 
-        // =========================
-        // CORS Configuration
-        // =========================
-        builder.Services.AddCors(options =>
-        {
-            options.AddPolicy("ReactApp", policy =>
-            {
-                policy
-                    .WithOrigins("http://localhost:5173")
-                    .AllowAnyHeader()
-                    .AllowAnyMethod();
-            });
-        });
+        //// =========================
+        //// CORS Configuration
+        //// =========================
+        //builder.Services.AddCors(options =>
+        //{
+        //    options.AddPolicy("ReactApp", policy =>
+        //    {
+        //        policy
+        //            .WithOrigins("http://localhost:5173")
+        //            .AllowAnyHeader()
+        //            .AllowAnyMethod();
+        //    });
+        //});
 
-        // Swagger
-        builder.Services.AddSwaggerGen();
+        //// Swagger
+        //builder.Services.AddSwaggerGen();
 
         var app = builder.Build();
 
@@ -46,11 +46,11 @@ public class Program
         // =========================
         // Swagger
         // =========================
-        if (app.Environment.IsDevelopment())
-        {
-            app.UseSwagger();
-            app.UseSwaggerUI();
-        }
+        //if (app.Environment.IsDevelopment())
+        //{
+        //    app.UseSwagger();
+        //    app.UseSwaggerUI();
+        //}
 
 
         // =========================
@@ -60,7 +60,7 @@ public class Program
         app.UseHttpsRedirection();
 
         // IMPORTANT: Enable the CORS policy
-        app.UseCors("ReactApp");
+        //app.UseCors("ReactApp");
 
         app.UseAuthorization();
 

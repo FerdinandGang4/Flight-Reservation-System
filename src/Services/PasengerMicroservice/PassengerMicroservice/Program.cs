@@ -12,7 +12,8 @@ namespace PassengerMicroservice
 
             // Add services to the container.
             builder.Services.AddAuthorization();
-            builder.Services.AddSwaggerGen();
+           
+            //builder.Services.AddSwaggerGen();
 
             builder.Services.AddDbContext<ApplicationDbContext>(option =>
             option.UseNpgsql(builder.Configuration.GetConnectionString("PassengerDbConnectionString")));
@@ -26,11 +27,11 @@ namespace PassengerMicroservice
 
             app.UseAuthorization();
 
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
+            //if (app.Environment.IsDevelopment())
+            //{
+            //    app.UseSwagger();
+            //    app.UseSwaggerUI();
+            //}
 
             //Creating API end points
             app.MapGet("/passengers", async (ApplicationDbContext db) => {

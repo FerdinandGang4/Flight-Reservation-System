@@ -16,4 +16,7 @@
   <Folder Name="/Services/PaymentService/">
     <Project Path="Services/PaymentMicroservice/PaymentMicroservice.csproj" Id="9d4e66f7-2261-4588-9ddc-3002703561ed" />
   </Folder>
+  <Folder Name="/Solution Items/">
+    <File Path="docker-compose.yml" />
+  </Folder>
 </Solution>

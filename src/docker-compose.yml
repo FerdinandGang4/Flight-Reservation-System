@@ -1,0 +1,80 @@
+services:
+
+  # ==========================================
+  # YARP API Gateway
+  # ==========================================
+  yarpapigateway:
+    build:
+      context: .
+      dockerfile: APIGateWay/YarpAPIGateWay/Dockerfile
+    container_name: yarp-api-gateway
+    ports:
+      - "7000:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:8080
+    depends_on:
+      - flightservice
+      - bookingservice
+      - passengerservice
+      - paymentservice
+
+
+  # ==========================================
+  # Flight Microservice
+  # ==========================================
+  flightservice:
+    build:
+      context: .
+      dockerfile: Services/FlightMicroService/FlightMicroservice/Dockerfile
+    container_name: flight-service
+    ports:
+      - "7001:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:8080
+
+
+  # ==========================================
+  # Booking Microservice
+  # ==========================================
+  bookingservice:
+    build:
+      context: .
+      dockerfile: Services/BookingMicroservice/BookingMicroservervice/Dockerfile
+    container_name: booking-service
+    ports:
+      - "7002:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:8080
+
+
+  # ==========================================
+  # Passenger Microservice
+  # ==========================================
+  passengerservice:
+    build:
+      context: .
+      dockerfile: Services/PasengerMicroservice/PassengerMicroservice/Dockerfile
+    container_name: passenger-service
+    ports:
+      - "7003:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:8080
+
+
+  # ==========================================
+  # Payment Microservice
+  # ==========================================
+  paymentservice:
+    build:
+      context: .
+      dockerfile: Services/PaymentMicroservice/Dockerfile
+    container_name: payment-service
+    ports:
+      - "7004:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:8080
