@@ -1,6 +1,8 @@
 <Solution>
+  <Folder Name="/APIGateWay/">
+    <Project Path="APIGateWay/YarpAPIGateWay/YarpAPIGateWay.csproj" Id="fdf75bcc-7315-4353-ac8e-500d1dcee488" />
+  </Folder>
   <Folder Name="/Services/" />
-  <Folder Name="/Services/APIGateway/" />
   <Folder Name="/Services/BookingService/">
     <Project Path="Services/BookingMicroservice/BookingMicroservervice/BookingMicroservervice.csproj" Id="3fed5adc-102d-4f1a-bf94-2fb351bc19d0" />
   </Folder>
