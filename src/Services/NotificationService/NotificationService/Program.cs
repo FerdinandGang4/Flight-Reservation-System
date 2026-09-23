@@ -15,17 +15,17 @@ namespace NotificationService
             builder.Services.AddDbContext<ApplicationDbContext>(option => option.UseNpgsql(builder.Configuration.GetConnectionString("" +
                 "NotificationServiceConnectionString")));
 
-            //builder.Services.AddSwaggerGen();
+             builder.Services.AddSwaggerGen();
 
             // Add services to the container.
 
             var app = builder.Build();
 
-            //if (app.Environment.IsDevelopment())
-            //{
-            //    app.UseSwagger();
-            //    app.UseSwaggerUI();
-            //}
+           if(app.Environment.IsDevelopment())
+            {
+                app.UseSwagger();
+                app.UseSwaggerUI();
+            }
 
             //To get the list of all notifications
             app.MapGet("/notifications", async (ApplicationDbContext db) => { 
