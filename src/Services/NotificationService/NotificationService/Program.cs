@@ -73,9 +73,7 @@ namespace NotificationService
 
                 if (notification == null)
                 {
-
-                    return Results.BadRequest($"There is no notification for the id {id}");
-
+                    return Results.NotFound($"There is no notification for the id {id}");
                 }
 
                  db.Notifications.Remove(notification);
@@ -90,14 +88,13 @@ namespace NotificationService
 
             app.MapPut("notifications/{id}", async (NotificationDto dto, int id, ApplicationDbContext db) => {
             
-               if(dto == null)
+                if(dto == null)
                 {
                     return Results.NotFound($"Please enter the correctect information");
                 }
 
                 Notification updatedNotification = await db.Notifications.FindAsync(id);
 
-               
                 updatedNotification.Message = dto.Message;
                 updatedNotification.NotificationDate = dto.NotificationDate;
                 updatedNotification.BookingId = dto.BookingId;
