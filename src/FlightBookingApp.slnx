@@ -9,7 +9,9 @@
   <Folder Name="/Services/FlightService/">
     <Project Path="Services/FlightMicroService/FlightMicroservice/FlightMicroservice.csproj" Id="6d9e6d3f-e7ed-4181-926a-b7a5c1ab25b2" />
   </Folder>
-  <Folder Name="/Services/NotificationService/" />
+  <Folder Name="/Services/NotificationService/">
+    <Project Path="Services/NotificationService/NotificationService/NotificationService.csproj" Id="cca73df3-ad6f-4f7b-85b9-1344caa552ce" />
+  </Folder>
   <Folder Name="/Services/PassengerService/">
     <Project Path="Services/PasengerMicroservice/PassengerMicroservice/PassengerMicroservice.csproj" Id="7c2cfb23-8166-4ce4-ac66-6c61cf02f31e" />
   </Folder>
