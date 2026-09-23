@@ -10,6 +10,6 @@ namespace NotificationService.Data
 
         }
 
-        public DbSet<Notification> MyProperty { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
     }
 }
